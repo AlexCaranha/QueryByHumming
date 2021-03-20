@@ -1,12 +1,10 @@
 
 import streamlit as st
-# import numpy as np
-# import pandas as pd
 
-def create_buttons_in_sidebar(buttons_names):
-    for button_name in buttons_names:
-        if st.sidebar.button(button_name):
-            st.markdown(f"## {button_name}")
+import search_a_song_page
+import database_page
+import about_page
+import configuration_page
 
 st.set_page_config(
     page_title="Query by Humming",
@@ -15,7 +13,25 @@ st.set_page_config(
     initial_sidebar_state="auto",
 )
 
-st.title("Query by humming")
 st.sidebar.title("Query by humming")
+st.sidebar.image("images/image_medium.png")
 
-create_buttons_in_sidebar(["Search a song", "Database", "Configuration", "About"])
+option = st.sidebar.radio(
+    'Select an option:',
+     ["Search a song", "Database", "Configuration", "About"])
+
+if option == "Search a song":
+    st.title("Query by humming - " + option)
+    search_a_song_page.render()
+
+if option == "Database":
+    st.title("Query by humming - " + option)
+    database_page.render()
+
+if option == "Configuration":
+    st.title("Query by humming - " + option)
+    configuration_page.render()
+
+if option == "About":
+    st.title("Query by humming - " + option)
+    about_page.render()
